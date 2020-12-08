@@ -18,7 +18,7 @@ Set-ExecutionPolicy Unrestricted -Force
 .\1_windows10-dev-config-enable-wsl.ps1
 ```
 
-### 2) Restart machine
+### 3) Restart machine
 After each script a restart is required.
 
 ### Execute next script
