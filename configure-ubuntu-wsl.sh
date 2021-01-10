@@ -7,6 +7,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 echo "Installing packages..."
 sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get install -y git git-flow openjdk-8-jdk-headless openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
                         yarn software-properties-common python3.9
 
@@ -37,5 +38,10 @@ ln -sf /mnt/c/Users/$USER/.npmrc  $HOME/.npmrc
 
 echo "Linking .yarnrc configuration on wsl distro..."
 ln -sf /mnt/c/Users/$USER/.yarnrc  $HOME/.yarnrc
+
+echo "Configuring general environment variables..."
+echo "export WSL_USER_HOME=/mnt/c/Users/\$USER" >> ~/.bashrc
+echo "export WSL_HOST=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2; exit;}')" >> ~/.bashrc
+echo "export DISPLAY=\$WSL_HOST:0.0" >> ~/.bashrc
 
 echo "Finished!"
