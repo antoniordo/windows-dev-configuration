@@ -15,6 +15,9 @@ echo "Linking Maven .m2 directory on wsl distro..."
 mkdir -p /mnt/c/Users/$USER/.m2/
 ln -sf /mnt/c/Users/$USER/.m2/ $HOME/
 
+echo "Creating common directories..."
+mkdir $HOME/.local/bin
+
 echo "Linking .ssh directory on wsl distro..."
 mkdir $HOME/.ssh
 cat /mnt/c/Users/$USER/.ssh/id_rsa > $HOME/.ssh/id_rsa
