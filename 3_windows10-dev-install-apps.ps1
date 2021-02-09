@@ -17,10 +17,10 @@ choco install -y awscli heroku-cli
 choco install -y virtualbox vagrant
 
 # General applications
-choco install -y discord vlc cpu-z googlechrome 7zip freefilesync adobereader
+choco install -y discord vlc cpu-z googlechrome firefox 7zip freefilesync adobereader
 
 # Office
-choco install -y libreoffice-fresh gimp
+choco install -y gimp
 
 # Games & hardware
 #choco install -y msiafterburner steam hwinfo.install cinebench
