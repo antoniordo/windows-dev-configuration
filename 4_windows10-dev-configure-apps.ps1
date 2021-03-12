@@ -9,8 +9,6 @@ mkdir "$HOME\dev\projects"
 mkdir "$HOME\.aws"
 mkdir "$HOME\.m2"
 mkdir "$HOME\.docker"
-Out-File -FilePath $HOME\.npmrc
-Out-File -FilePath $HOME\.yarnrc
 
 # Install and enable oh-my-posh
 Install-Module posh-git -Scope CurrentUser -Confirm:$False -Force
