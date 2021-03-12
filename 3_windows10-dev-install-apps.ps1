@@ -22,12 +22,10 @@ choco install -y discord vlc cpu-z googlechrome firefox 7zip freefilesync adober
 # Office
 choco install -y gimp
 
-
 # Windows Additions
-choco install -y powertoys files
+choco install -y powertoys
 
 # Games & hardware
-#choco install -y msiafterburner steam hwinfo.install cinebench
 Write-Output "Games & hardware apps? "
 $a = new-object -comobject wscript.shell
 $intAnswer = $a.popup("Install games & hardware apps?", `
