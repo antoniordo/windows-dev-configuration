@@ -9,7 +9,7 @@ choco install -y vcredist2008 vcredist2017
 choco install -y python
 choco install -y ojdkbuild11 maven
 choco install -y nodejs-lts yarn
-choco install -y jetbrainsmono jetbrainstoolbox vscode typora
+choco install -y jetbrainsmono jetbrainstoolbox vscode typora firacode
 choco install -y cascadiacodepl microsoft-windows-terminal
 choco install -y git --params "/NoShellIntegration /SChannel /NoGuiHereIntegration /NoShellHereIntegration"
 choco install -y docker-desktop
