@@ -10,6 +10,7 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y git git-flow openjdk-8-jdk-headless openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
                         yarn software-properties-common python3.9 xfce4 xfce4-terminal
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
 echo "Linking Maven .m2 directory on wsl distro..."
 mkdir -p /mnt/c/Users/$USER/.m2/
