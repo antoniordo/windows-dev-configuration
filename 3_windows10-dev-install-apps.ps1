@@ -3,7 +3,7 @@ Invoke-WebRequest -Uri https://chocolatey.org/install.ps1 -OutFile $HOME/Downloa
 & $HOME/Downloads/install-choco.ps1
 
 # Prerequisites
-choco install -y vcredist2008 vcredist2017
+choco install -y vcredist2008 vcredist2017 powershell-core
 
 # Development
 choco install -y python
