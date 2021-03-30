@@ -14,7 +14,6 @@ choco install -y cascadiacodepl microsoft-windows-terminal
 choco install -y git --params "/NoShellIntegration /SChannel /NoGuiHereIntegration /NoShellHereIntegration"
 choco install -y docker-desktop
 choco install -y awscli heroku-cli
-choco install -y virtualbox vagrant
 
 # General applications
 choco install -y discord vlc cpu-z googlechrome firefox 7zip freefilesync adobereader
