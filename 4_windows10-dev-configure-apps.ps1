@@ -4,11 +4,11 @@ powershell.exe -NoLogo -NoProfile -Command '[Net.ServicePointManager]::SecurityP
 mkdir "$HOME\.ssh"
 ssh-keygen -C "$env:USERNAME@$(HOSTNAME)-$(Get-Date -Format 'yyyy-MM-dd')" -t rsa -f "$HOME\.ssh\id_rsa" -q
 
-mkdir "$HOME\dev"
-mkdir "$HOME\dev\projects"
-mkdir "$HOME\.aws"
-mkdir "$HOME\.m2"
-mkdir "$HOME\.docker"
+New-Item -Path "$HOME" -Name "dev" -ItemType "directory" -Force
+New-Item -Path "$HOME" -Name "dev\projects" -ItemType "directory" -Force
+New-Item -Path "$HOME" -Name ".aws" -ItemType "directory" -Force
+New-Item -Path "$HOME" -Name ".m2" -ItemType "directory" -Force
+New-Item -Path "$HOME" -Name ".docker" -ItemType "directory" -Force
 
 # Install and enable oh-my-posh
 Install-Module posh-git -Scope CurrentUser -Confirm:$False -Force
