@@ -17,7 +17,7 @@ mkdir -p /mnt/c/Users/$USER/.m2/
 ln -sf /mnt/c/Users/$USER/.m2/ $HOME/
 
 echo "Creating common directories..."
-mkdir $HOME/.local/bin
+mkdir -p $HOME/.local/bin
 
 echo "Linking .ssh directory on wsl distro..."
 mkdir $HOME/.ssh
@@ -27,7 +27,7 @@ chmod 400 /mnt/c/Users/$USER/.ssh/id_rsa
 chmod 400 /mnt/c/Users/$USER/.ssh/id_rsa.pub
 
 echo "Linking dev home directory on wsl distro..."
-ln -sf /mnt/c/Users/$USER/dev/ $HOME/
+ln -sf /mnt/c/Users/$USER/dev/ $HOME/dev-windows
 
 echo "Linking Docker configuration on wsl distro..."
 sudo mkdir -p /etc/docker
@@ -35,13 +35,13 @@ sudo ln -sf /mnt/c/Users/$USER/.docker/daemon.json /etc/docker/daemon.json
 
 echo "Linking .aws configuration on wsl distro..."
 mkdir -p /mnt/c/Users/$USER/.aws/
-ln -sf /mnt/c/Users/$USER/.aws/  $HOME/
+ln -sf /mnt/c/Users/$USER/.aws/ $HOME/
 
 echo "Linking .npmrc configuration on wsl distro..."
-ln -sf /mnt/c/Users/$USER/.npmrc  $HOME/.npmrc
+ln -sf /mnt/c/Users/$USER/.npmrc $HOME/.npmrc
 
 echo "Linking .yarnrc configuration on wsl distro..."
-ln -sf /mnt/c/Users/$USER/.yarnrc  $HOME/.yarnrc
+ln -sf /mnt/c/Users/$USER/.yarnrc $HOME/.yarnrc
 
 echo "Configuring general environment variables..."
 echo "export WSL_USER_HOME=/mnt/c/Users/\$USER" >> ~/.bashrc
