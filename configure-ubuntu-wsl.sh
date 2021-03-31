@@ -4,12 +4,14 @@ set -e
 echo "Adding additional packages repositories..."
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
 echo "Installing packages..."
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y git git-flow openjdk-8-jdk-headless openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
-                        yarn software-properties-common python3.9 xfce4 xfce4-terminal
+                        yarn software-properties-common python3.9 xfce4 xfce4-terminal google-chrome-stable
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
 echo "Linking Maven .m2 directory on wsl distro..."
