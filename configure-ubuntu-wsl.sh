@@ -11,18 +11,21 @@ echo "Installing packages..."
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y git git-flow openjdk-8-jdk-headless openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
-                        yarn software-properties-common python3.9 xfce4 xfce4-terminal google-chrome-stable
+                        yarn software-properties-common python3.9 xfce4 xfce4-terminal google-chrome-stable zsh bat
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
-echo "Linking Maven .m2 directory on wsl distro..."
-mkdir -p /mnt/c/Users/$USER/.m2/
-ln -sf /mnt/c/Users/$USER/.m2/ $HOME/
+echo "Installing Oh My Zsh"
+RUNZSH='no' sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Creating common directories..."
 mkdir -p $HOME/.local/bin
+mkdir $HOME/.ssh
+
+echo "Linking Maven and Gradle directories..."
+ln -sf /mnt/c/Users/$USER/.m2/ $HOME/
+ln -sf /mnt/c/Users/$USER/.gradle/ $HOME/
 
 echo "Linking .ssh directory on wsl distro..."
-mkdir $HOME/.ssh
 cat /mnt/c/Users/$USER/.ssh/id_rsa > $HOME/.ssh/id_rsa
 cat /mnt/c/Users/$USER/.ssh/id_rsa.pub > $HOME/.ssh/id_rsa.pub
 chmod 400 /mnt/c/Users/$USER/.ssh/id_rsa
@@ -45,9 +48,20 @@ ln -sf /mnt/c/Users/$USER/.npmrc $HOME/.npmrc
 echo "Linking .yarnrc configuration on wsl distro..."
 ln -sf /mnt/c/Users/$USER/.yarnrc $HOME/.yarnrc
 
-echo "Configuring general environment variables..."
-echo "export WSL_USER_HOME=/mnt/c/Users/\$USER" >> ~/.bashrc
+echo "Genearal configs..."
+
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
+# bash
 echo "export WSL_HOST=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2; exit;}')" >> ~/.bashrc
 echo "export DISPLAY=\$WSL_HOST:0.0" >> ~/.bashrc
+echo 'alias cat="batcat"' >> ~/.bashrc
+echo 'export PATH="$PATH:$HOME/.local/bin/"' >> ~/.bashrc
+
+# zsh
+echo "export WSL_HOST=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2; exit;}')" >> ~/.zshrc
+echo "export DISPLAY=\$WSL_HOST:0.0" >> ~/.zshrc
+echo 'alias cat="batcat"' >> ~/.zshrc
+echo 'export PATH="$PATH:$HOME/.local/bin/"' >> ~/.zshrc
 
 echo "Finished!"

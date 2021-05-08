@@ -7,10 +7,10 @@ choco install -y vcredist2008 vcredist2017 powershell-core
 
 # Development
 choco install -y python
-choco install -y ojdkbuild11 maven
+choco install -y jdk11 maven gradle
 choco install -y nodejs-lts yarn
-choco install -y jetbrainsmono jetbrainstoolbox vscode typora firacode
-choco install -y cascadiacodepl microsoft-windows-terminal
+choco install -y jetbrainsmono firacode hackfont dejavufonts cascadiacodepl
+choco install -y jetbrainstoolbox vscode typora microsoft-windows-terminal
 choco install -y git --params "/NoShellIntegration /SChannel /NoGuiHereIntegration /NoShellHereIntegration"
 choco install -y docker-desktop
 choco install -y awscli heroku-cli
