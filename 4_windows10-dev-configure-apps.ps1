@@ -1,8 +1,8 @@
 
-powershell.exe -NoLogo -NoProfile -Command '[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Install-Module -Name PackageManagement -Force -MinimumVersion 1.4.6 -Scope CurrentUser -AllowClobber -Confirm:$False -Repository PSGallery'
-
-mkdir "$HOME\.ssh"
+New-Item -Path "$HOME" -Name ".ssh" -ItemType "directory" -Force
 ssh-keygen -C "$env:USERNAME@$(HOSTNAME)-$(Get-Date -Format 'yyyy-MM-dd')" -t rsa -f "$HOME\.ssh\id_rsa" -q
+
+git config --global http.sslBackend schannel
 
 New-Item -Path "$HOME" -Name "dev" -ItemType "directory" -Force
 New-Item -Path "$HOME" -Name "dev\projects" -ItemType "directory" -Force
@@ -15,7 +15,7 @@ function crlfToLf(
       [Parameter(Mandatory)]
       [string]
       $path) {
-      (Get-Content $path -Raw).Replace("`r`n","`n") | Set-Content $path -Force
+      (Get-Content $path -Raw).Replace("`r`n", "`n") | Set-Content $path -Force
 }
 
 # Initialize files
@@ -30,10 +30,26 @@ crlfToLf("$HOME/.gradle/gradle.properties")
       xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
 
 </settings>
-"@ | Out-File $HOME/.m2/settings2.xml -Encoding utf8
+"@ | Out-File $HOME/.m2/settings.xml -Encoding utf8
 crlfToLf("$HOME/.yarnrc")
 
 # Install and enable oh-my-posh
-pwsh -Command {Install-Module oh-my-posh -Scope CurrentUser -AllowPrerelease -Confirm:$False -Force}
-pwsh -Command {Add-Content $PROFILE "Set-PoshPrompt -Theme paradox"}
+pwsh -Command { Install-Module oh-my-posh -Scope CurrentUser -Confirm:$False -Force }
+pwsh -Command { Add-Content $PROFILE "Set-PoshPrompt -Theme paradox" }
+
+#Configure Ubuntu WSL
+function wslpath(
+      [Parameter(Mandatory)]
+      [string]
+      $path,
+    
+      [ValidateSet('-u', '-w', '-m')]
+      $conversion = '-u'
+) {
+      wsl 'wslpath' $conversion $path.Replace('\', '\\');
+}
+
+$windowsScriptPath = Get-Location
+$ubuntuScriptPath = (wslpath $windowsScriptPath)
+wsl 'bash' "$ubuntuScriptPath/configure-ubuntu-wsl.sh"
 

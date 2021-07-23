@@ -7,14 +7,14 @@ Write-Output "Setting WSL 2 as default..."
 wsl --set-default-version 2
 
 Write-Output "Installing Ubuntu LTS distro..."
-Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile $HOME/Downloads/Ubuntu.appx
-Add-AppxPackage -Path $HOME\Downloads\Ubuntu.appx
+$tempFile = New-TemporaryFile
+Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile $tempFile
+Add-AppxPackage -Path $tempFile
 ubuntu2004
 
 Write-Output "Please restart "
 $a = new-object -comobject wscript.shell
-$intAnswer = $a.popup("Restart system to complete instalation?", `
-0,"Restart",4)
+$intAnswer = $a.popup("Restart system to complete instalation?", 0, "Restart", 4)
 If ($intAnswer -eq 6) {
     Restart-Computer
 } else {

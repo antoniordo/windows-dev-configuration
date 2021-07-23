@@ -10,7 +10,7 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 echo "Installing packages..."
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y git git-flow openjdk-8-jdk-headless openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
+sudo apt-get install -y git git-flow openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
                         yarn software-properties-common python3.9 xfce4 xfce4-terminal google-chrome-stable zsh bat
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
@@ -23,13 +23,14 @@ mkdir $HOME/.ssh
 
 echo "Linking Maven and Gradle directories..."
 ln -sf /mnt/c/Users/$USER/.m2/ $HOME/
-ln -sf /mnt/c/Users/$USER/.gradle/ $HOME/
+mkdir $HOME/.gradle
+ln -sf /mnt/c/Users/$USER/.gradle/gradle.properties $HOME/.gradle/
 
 echo "Linking .ssh directory on wsl distro..."
 cat /mnt/c/Users/$USER/.ssh/id_rsa > $HOME/.ssh/id_rsa
 cat /mnt/c/Users/$USER/.ssh/id_rsa.pub > $HOME/.ssh/id_rsa.pub
-chmod 400 /mnt/c/Users/$USER/.ssh/id_rsa
-chmod 400 /mnt/c/Users/$USER/.ssh/id_rsa.pub
+chmod 400 $HOME/.ssh/id_rsa
+chmod 400 $HOME/.ssh/id_rsa.pub
 
 echo "Linking dev home directory on wsl distro..."
 ln -sf /mnt/c/Users/$USER/dev/ $HOME/dev-windows
