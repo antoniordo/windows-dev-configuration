@@ -10,7 +10,7 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 echo "Installing packages..."
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y git git-flow openjdk-11-jre-headless maven jq unzip awscli nodejs npm \
+sudo apt-get install -y git git-flow openjdk-11-jre-headless maven jq unzip awscli npm \
                         yarn software-properties-common python3.9 xfce4 xfce4-terminal google-chrome-stable zsh bat
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
@@ -58,11 +58,17 @@ echo "export WSL_HOST=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$
 echo "export DISPLAY=\$WSL_HOST:0.0" >> ~/.bashrc
 echo 'alias cat="batcat"' >> ~/.bashrc
 echo 'export PATH="$PATH:$HOME/.local/bin/"' >> ~/.bashrc
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.bashrc
+echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion' >> ~/.bashrc
 
 # zsh
 echo "export WSL_HOST=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2; exit;}')" >> ~/.zshrc
 echo "export DISPLAY=\$WSL_HOST:0.0" >> ~/.zshrc
 echo 'alias cat="batcat"' >> ~/.zshrc
 echo 'export PATH="$PATH:$HOME/.local/bin/"' >> ~/.zshrc
+echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.zshrc
+echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion' >> ~/.zshrc
 
 echo "Finished!"
