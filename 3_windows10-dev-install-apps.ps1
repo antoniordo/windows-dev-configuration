@@ -1,8 +1,12 @@
 
-$wingetUrl = 'https://github-releases.githubusercontent.com/197275130/dd04bc80-d294-11eb-921d-e0f9a5ebe452?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20210720%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210720T134556Z&X-Amz-Expires=300&X-Amz-Signature=d9a32aaa5a8e0fe3251ee2d270ea95269841eaec0eccdef3cd7b92472a66e59c&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=197275130&response-content-disposition=attachment%3B%20filename%3DMicrosoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle&response-content-type=application%2Foctet-stream'
-$tempFile = New-TemporaryFile
-Invoke-WebRequest -Uri $wingetUrl -OutFile $tempFile
-Add-AppxPackage -Path $tempFile
+$vclibsUrl='https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx'
+Invoke-WebRequest -Uri $vclibsUrl -OutFile $HOME\Downloads\Microsoft.VCLibs.x64.14.00.Desktop.appx
+Add-AppxPackage -Path $HOME\Downloads\Microsoft.VCLibs.x64.14.00.Desktop.appx
+
+$wingetUrl = 'https://github.com/microsoft/winget-cli/releases/download/v1.0.11692/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
+Invoke-WebRequest -Uri $wingetUrl -OutFile $HOME\Downloads\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+Add-AppxPackage -Path $HOME\Downloads\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+
 
 winget install PowerShell
 winget install Microsoft.WindowsTerminal
