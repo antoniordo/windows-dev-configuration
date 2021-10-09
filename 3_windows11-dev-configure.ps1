@@ -51,5 +51,5 @@ function wslpath(
 
 $windowsScriptPath = Get-Location
 $ubuntuScriptPath = (wslpath $windowsScriptPath)
-wsl 'bash' "$ubuntuScriptPath/configure-ubuntu-wsl.sh"
+wsl 'bash' "$ubuntuScriptPath/ubuntu-dev-configure.sh"
 

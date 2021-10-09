@@ -1,8 +1,7 @@
 Windows dev enviroment config scripts
 =================
 
-This scripts configure Windows 10 for development enabling WSL 2 with Ubuntu and installs basic programs using 
-Chocolatey as package Manager.
+This scripts configure Windows 11 for development enabling WSL with Ubuntu and installs basic development tools
 
 ## How to use
 
@@ -10,12 +9,12 @@ Chocolatey as package Manager.
 
 ### 1) Open Power Shell in Administrador mode and execute:
 ``` powershell
-Set-ExecutionPolicy Unrestricted -Force
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
 ```
 
 ### 2) Execute Script
 ``` powershell
-.\1_windows10-dev-config-enable-wsl.ps1
+.\1_windows11-dev-config-enable-wsl.ps1
 ```
 
 ### 3) Restart machine
