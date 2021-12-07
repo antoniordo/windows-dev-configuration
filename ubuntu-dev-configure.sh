@@ -72,6 +72,8 @@ ln -sf /mnt/c/Users/$USER/.yarnrc $HOME/.yarnrc
 echo "Genearal configs..."
 
 ln -s /usr/bin/batcat ~/.local/bin/bat
+git config --add oh-my-zsh.hide-dirty 1
+git config --add oh-my-zsh.hide-status 1
 
 # bash
 echo "export WSL_HOST=\$(cat /etc/resolv.conf | grep nameserver | awk '{print \$2; exit;}')" >> ~/.bashrc
